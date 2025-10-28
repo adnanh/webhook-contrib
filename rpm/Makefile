@@ -7,6 +7,7 @@ build_rpm:
 		export VERSION=$$(git describe --tags --abbrev=0 | sed -e 's!v!!') && \
 		export COMMIT=$$(git rev-parse HEAD) && \
 		export SHORTCOMMIT=$$(git rev-parse HEAD|cut -c-7) && \
+		export COMMIT_COUNT=$$(git rev-list --count HEAD) && \
 		make build && \
 		cd .. && \
 		mkdir -p $(TOP_DIR)/ && \
@@ -16,6 +17,8 @@ build_rpm:
 		cp src/README.md $(TOP_DIR)/ && \
 		rpmbuild -bb \
 			--define "_commit $$COMMIT" \
+			--define "_shortcommit $$SHORTCOMMIT" \
+			--define "_commitcount $$COMMIT_COUNT" \
 			--define "_version $$VERSION" \
 			--define "_topdir $(TOP_DIR)" \
 			webhook.spec

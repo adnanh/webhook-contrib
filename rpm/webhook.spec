@@ -21,7 +21,7 @@
 
 Name:           %{repo}
 Version:        %{version}
-Release:        %{shortcommit}%{?dist}
+Release:        %{_commitcount}_%{shortcommit}%{?dist}
 Summary:        webhook is a lightweight configurable webhook server written in Go
 License:        MIT
 URL:            https://%{provider_prefix}
