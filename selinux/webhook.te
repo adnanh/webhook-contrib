@@ -54,6 +54,8 @@ allow webhook_t cgroup_t:file read;
 fs_search_cgroup_dirs(webhook_t)
 
 allow webhook_t self:tcp_socket { create accept listen bind setopt getattr read write };
+allow webhook_t init_t:tcp_socket accept;
+
 kernel_read_net_sysctls(webhook_t)
 kernel_search_network_sysctl(webhook_t)
 corenet_sendrecv_http_server_packets(webhook_t)
